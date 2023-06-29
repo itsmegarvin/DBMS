@@ -1,47 +1,66 @@
-create database ACEM;
-use  ACEM;
-create table studentss(
-roll integer,
+CREATE DATABASE abc
+USE abc;			-- sql is a non case sensitive query language --
+
+
+--creating table named student--
+CREATE TABLE student(
+id int,
+name varchar(50),
+roll int,
+batch int
+);
+--inserting values to table named students--
+INSERT INTO student values
+(1,'Adam',20,2023),
+(2,'Bryan',19,2024),
+(3,'Bett',20,2022),
+(4,'phil',21,2023);
+SELECT * FROM student--displaying the contents of the table--
+
+--to remove roll from the table student
+ALTER TABLE student
+DROP COLUMN roll;
+
+drop table teacher
+
+SELECT * FROM student
+
+
+
+
+CREATE TABLE teacher(
+id int,
 name varchar(20),
-age integer
+faculty char(20)
 );
-insert into studentss values
-(1,'ram',19),
-(2,'sam',21),
-(3,'hari',22),
-(4,'suman',20),
-(5,'abhi',19);
-select * from studentss;  --we can also use name or age instead of *
---drop table table_name
+INSERT INTO teacher VALUES
+(1,'Louis','BEI'),
+(2,'Thomas','BCE'),
+(3,'David','BEL'),
+(4,'Sergio','BCT');
+SELECT * FROM teacher
 
-create table teachr(
-name varchar(20),
-faculty varchar(20)
+
+
+--Now altering the table by adding the column named salary--
+ALTER TABLE teacher
+ADD salary INTEGER;
+
+SELECT * FROM teacher; --semicolon is optional in sql--
+
+
+--copying content/data from one table to another--
+CREATE TABLE infostudents(
+roll int,
+name varchar(10)
 );
-insert into teachr values
-('ramesh','BEI'),
-('lokesh','BCT'),
-('ashish','BEL'),
-('ravi','BCE');
-select * from teachr;
+INSERT INTO infostudents
+SELECT roll,name FROM student
 
-alter table teachr
-drop column faculty;
-
-alter table teachr
-add salary integer;
-
-create table info_students(
-roll integer,
-name varchar(40)
-);
-insert into info_students(roll,name)
-select roll,name from studentss
-select * from info_students
-
---inserting or copying alternative
---select roll,name into info_student from student
---select * from info_student
+SELECT * FROM infostudents;
 
 
-drop table info_students
+--deleting all records from infostudents
+DELETE FROM infostudents
+
+SELECT * FROM infostudents;
