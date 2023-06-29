@@ -1,151 +1,89 @@
-create database ACEM;
-use  ACEM;
-create table studentss(
-roll integer,
-name varchar(20),
-age integer
-);
-insert into studentss values
-(1,'ram',19),
-(2,'sam',21),
-(3,'hari',22),
-(4,'suman',20),
-(5,'abhi',19);
-select * from studentss;  --we can also use name or age instead of *
---drop table studentss
+USE abc;
 
-create table teachr(
-name varchar(20),
-faculty varchar(20)
-);
-insert into teachr values
-('ramesh','BEI'),
-('lokesh','BCT'),
-('ashish','BEL'),
-('ravi','BCE');
-select * from teachr;
-
-select * from studentss;
-
-create table info_students(
-roll integer,
-name varchar(40)
-);
-insert into info_students(roll,name)
-select roll,name from studentss
-select * from info_students;
---inserting or copying alternative
---select roll,name into info_student from student
---select * from info_student
---to modify the table we should modify the datatype as well.--
+/*
+Create the relations as below:
+Employee (eid as pk, ename, dateofemploy, salary)
+Booklist(isbn as pk, name, publication )
+Book(bid as pk, bname, author, price)
+Issues(IID as pk,name,dateofissue)
+*/
+/*
+primary can be set 
+1.while creating table 
+2.modifying
+*/
 
 
---lab 03
 
-
---alter table table name 
---add foreign key (tid)
-
-
-alter table studentss
-add tid int
-
-alter table teachr
-alter column  tid integer not null 
-
-alter table studentss
-add constraint fkey
-foreign key (tid)
-references teachr (tid)
-
-select * from teachr
-select * from studentss
-
+--creating table employee
 CREATE TABLE employee(
 eid int not null,
-ename varchar(30),
+ename varchar(10),
 dateofemploy date,
-salary int
+salary money,
+CONSTRAINT pkey PRIMARY KEY (eid)
 );
-ALTER table employee ADD primary key(eid)
+INSERT INTO employee values
+(12,'marco','2020-03-23',80000),
+(26,'luka','2018-05-11',25000),
+(38,'diego','2021-06-17',50000),
+(49,'raphael','2022-08-15',30000);
+SELECT * FROM employee;
 
 
 
+--creating table booklist	
+--International Standard Book Number (ISBN) is numeric commercial book identifier that is intended to be unique
 CREATE TABLE booklist(
 isbn int not null,
-name varchar(30),
-publication int
+name varchar(50),
+publication varchar(50),
+CONSTRAINT pkey1 PRIMARY KEY (isbn)
 );
-insert into booklist values
-(1,'physics','ashmita'),
-(2,'math','insights'),
-(3,'chemistry','ashmita');
-SELECT * FROM booklist
+INSERT INTO booklist values
+(112,'SQL in 10 Minutes','Sams Publishing'),
+(262,'SQL Cookbook','O′Reilly'),
+(381,'Learning SQL','Penguin Books Ltd'),
+(492,'SQL Queries for Mere Mortals','Addison-Wesley');
+SELECT * FROM booklist;
 
+
+
+--creating table book
 CREATE TABLE book(
-isbn int not null,
-name varchar(30),
-publication varchar(30),
-iid int,
-primary key(isbn)
+bid int not null,
+bname varchar(50),
+author varchar(50),
+price money,
+CONSTRAINT pkey3 PRIMARY KEY (bid)
 );
+INSERT INTO book values
+(1,'SQL in 10 Minutes','Ben Forta',3000),
+(2,'SQL Cookbook','Anthony Molinaro',2500),
+(3,'Learning SQL','Alan Beaulieu',990),
+(4,'SQL Queries for Mere Mortals','John Viescas',4000);
+SELECT * FROM book;
 
-ALTER table book ADD primary key(isbn)
-
-alter table book 
-add iid int 
 
 
-insert into book (isbn,name,publication) values
-(1,'physics','ashmita'),
-(2,'math','insights'),
-(3,'chemistry','ashmita');
-SELECT * FROM book
-
+--creating issues table 
 CREATE TABLE issues(
-iid int not null,
-name varchar(30),
-dateofissue int,
-isbn int ,
-primary key (iid)
+iid int,
+name varchar(50),
+dateofissue date
 );
-
-
-
-
-insert into issues (iid,name)values
-(1,'physics'),
-(2,'math'),
-(3,'chemistry');
-SELECT * FROM issues
-
-alter table book 
-add constraint fkeys_bid 
-foreign key (isbn)
-references issues (isbn)
-
-
-ALTER TABLE studentss
-ALTER COLUMN tid integer NOT NULL
+INSERT INTO book values
+(1,'SQL in 10 Minutes','1999-08-17',3000),
+(2,'SQL Cookbook','2002-09-11',2500),
+(3,'Learning SQL','2008-12-22',990),
+(4,'SQL Queries for Mere Mortals','2011-02-15',4000);
+SELECT * FROM book;
+	--setting primary key to iid by altering before that we have set datatype to not null.
+ALTER TABLE issues
+ALTER column iid int not null
 
 ALTER TABLE issues
-ADD CONSTRAINT keyy PRIMARY KEY(isbn)
-ALTER TABLE issues
-DROP CONSTRAINT isbn
-insert into employee (eid,ename,salary)values --here date column is not included means it is made null.--
-(1,'Phil',40000),
-(2,'Jake',25000),
-(3,'Harry',30000),
-(4,'Sull',60000),
-(5,'Garvin',90000);
-SELECT * FROM employee
-
-alter table employee
-add constraint chkk
-Check (salary<100000)
-
-alter table employee
-alter column salary int not null
+ADD CONSTRAINT pkey4 PRIMARY KEY (iid);
 
 
 
