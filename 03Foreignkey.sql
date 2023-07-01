@@ -1,3 +1,6 @@
+--As we know both primary key and foreign key are SQL CONSTRAINT
+
+
 /*
 	setting foreign key
 	1.while creating table 
