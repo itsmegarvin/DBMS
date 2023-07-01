@@ -1,3 +1,6 @@
+--Both primary key and foreign key are SQL CONSTRAINT
+
+
 USE abc;
 
 /*
