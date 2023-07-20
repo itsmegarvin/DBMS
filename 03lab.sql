@@ -68,7 +68,28 @@ select * from employee
 update employee set salary=salary*0.2  where salary<50000
 
 --qn 9
+select * from  employee
+update employee set salary=1.02*salary where salary<6000
 
+
+--qn 11
+select * from employee
+delete from employee where eid=1
+
+--qn 12
+
+select * from teachr
+select * from employee
+--here aren't any date in the employee table so first let insert the date
+ 
+update employee set dateofemploy='2018-01-02' where ename='garvin';
+select name,faculty from teachr where tid in(select eid from employee where dateofemploy='2018-01-02')
+
+--qn 13 
+select * from book
+select * from booklist
+
+select bname,author from book where bname in (select name from booklist where publication='ashmita')
 
 
 
