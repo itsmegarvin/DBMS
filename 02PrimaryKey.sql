@@ -14,6 +14,10 @@ Issues(IID as pk,name,dateofissue)
 primary can be set 
 1.while creating table 
 2.modifying
+
+> A relation can have multiple foreign keys and multiple primary keys.
+> Also foreign key can reference the primary key of same relation.
+
 */
 
 
